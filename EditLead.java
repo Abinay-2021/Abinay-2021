@@ -28,7 +28,7 @@ WebDriverManager.chromedriver().setup();
 		driver.findElement(By.xpath("(//input[@name='firstName'])[3]")).sendKeys("Abi");
 		driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//table/tbody/tr/td/div/a")).click();
+		driver.findElement(By.xpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a")).click();
 		String text = driver.getTitle();
 		
 		if (text.equals("View Lead | opentaps CRM")) {
@@ -42,9 +42,10 @@ WebDriverManager.chromedriver().setup();
 		System.out.println(text2);
 		driver.findElement(By.xpath("//a[text()='Edit']")).click();
 		driver.findElement(By.id("updateLeadForm_companyName")).clear();
-		driver.findElement(By.id("updateLeadForm_companyName")).sendKeys("capegemini");
+		driver.findElement(By.id("updateLeadForm_companyName")).sendKeys("amazon");
 		driver.findElement(By.xpath("//input[@value='Update']")).click();
 		String text3 =driver.findElement(By.id("viewLead_companyName_sp")).getText();
+		System.out.println(text3);
 		
 		if (text2.equals(text3)) {
 			System.out.println("No changes are updated ");
