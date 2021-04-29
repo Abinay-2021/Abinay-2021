@@ -10,7 +10,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DeleteLead {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 WebDriverManager.chromedriver().setup();
 		
@@ -31,19 +31,20 @@ WebDriverManager.chromedriver().setup();
 		driver.findElement(By.linkText("Find Leads")).click();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		//String text = driver.findElement(By.xpath("//table/tbody/tr[1]/td[1]/div/a")).getText();
-		driver.findElement(By.xpath("//table/tbody/tr[1]/td[1]/div/a")).click();
+		driver.findElement(By.xpath("(//div[@class='x-grid3-cell-inner x-grid3-col-partyId'])[1]/a")).click();
 		String text = driver.findElement(By.id("viewLead_companyName_sp")).getText();
 		String text2 = text.replaceAll("[A-Za-z ()]","");
 		System.out.println(text2);
 		driver.findElement(By.linkText("Delete")).click();
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 		driver.findElement(By.linkText("Find Leads")).click();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.findElement(By.xpath("//input[@name='id']")).sendKeys(text2,Keys.TAB);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//input[@name='id']")).sendKeys(text2);
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Thread.sleep(2000);
 		String recordResult= driver.findElement(By.xpath("//div[@class='x-paging-info']")).getText();
+		System.out.println(recordResult);
 	if (recordResult.equalsIgnoreCase("No records to display")) {
 		
 		System.out.println("Records deleted successfully");
