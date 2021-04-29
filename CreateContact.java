@@ -42,7 +42,7 @@ WebDriverManager.chromedriver().setup();
 		driver.findElement(By.id("updateContactForm_description")).clear();
 		driver.findElement(By.id("updateContactForm_importantNote")).sendKeys("importsnt notes...");
 		driver.findElement(By.xpath("//input[@value='Update']")).click();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
 		String text = driver.getTitle();
 		System.out.println(text);
 		
